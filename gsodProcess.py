@@ -26,7 +26,7 @@ def get_years_files(num_years):
     return years, files
 
 
-def process_all_years(yearfiles, target_day):  
+def process_all_years(yearfiles, target_day, data_dir='noaa_gsod/'):  
     """
     Open each zip file in tar, check if station was operating in time series 
 
@@ -41,7 +41,7 @@ def process_all_years(yearfiles, target_day):
     df_day = pd.DataFrame([])
     for yearfile in yearfiles[:-1]: # skip most recent year for now
         print("Processing file: {}".format(yearfile))
-        tar = tarfile.open("noaa_data/"+yearfile, "r")
+        tar = tarfile.open(data_dir+yearfile, "r")
         print("Number of stations in file: {}".format(len(tar.getmembers()[1:])))
         for member in tar: 
             de = pd.read_csv(io.BytesIO(tar.extractfile(member).read()), encoding = 'utf8')
