@@ -35,7 +35,9 @@ def process_all_years(yearfiles, target_day, data_dir='noaa_gsod/'):
     yearfiles: str
         List of zipped tarballs to unpack 
     target_day: datetime.datetime
-        Target day to store unaggregated data 
+        Target day to store unaggregated data
+    data_dir: str
+        Directory to access downloaded data. Default = 'noaa_gsod/'
     """
     df = pd.DataFrame([])
     df_day = pd.DataFrame([])
